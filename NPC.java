@@ -1,4 +1,4 @@
-package mypack;
+package final_project_package;
 import java.util.Scanner;
 
 public abstract class NPC {
@@ -14,7 +14,7 @@ public abstract class NPC {
 
 class QuestGiver extends NPC{
 	void setDetails() {
-		String name = "Bob";
+		String name = "Mike";
 	}
 	String prompt(){
 		return ("Hello Player, welcome to XXX, here is your first quest: ");
@@ -28,4 +28,15 @@ class Reg_NPC extends NPC{
 	String prompt() {
 		return ("...");
 	}
+}
+
+class Shop_NPC extends NPC{
+	void setDetails() {
+		String name = "Merchant";
+	}
+	String prompt() {
+		return "Welcome to the shop";
+	}
+	
+	void inventory() {} //Array list with items and prices
 }

@@ -7,12 +7,13 @@ public class Character {
 	Scanner scan = new Scanner(System.in);
 	public List<String> user_items;
 	public List<String> user_moves;
-	public String name;
+	public String user;
 	
-	public Character() {
+	public Character(String name) {
 		user_items = new ArrayList<>();
         user_moves = new ArrayList<>();
-        name = scan.nextLine();
+        user = name;
+        
         
         user_items.add("Sword");
         user_items.add("Potion");
