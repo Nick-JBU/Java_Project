@@ -1,5 +1,4 @@
 package final_project_package;
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -12,24 +11,25 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 public class Display_Text extends JFrame implements ActionListener{
-	public JLabel userLabel;
 	public JLabel interactLabel;
-	public JTextField userField;
 	public JTextField interactField;
+	private JButton continueButton;
+	private JButton backButton;
 	
 	Display_Text(){
 		GridBagConstraints layoutConst = null;
 		setTitle("Conversation");
 		
-		userLabel = new JLabel("You: ");
-		interactLabel = new JLabel("NPC: ");
+		continueButton = new JButton("Continue");
+		continueButton.addActionListener(this);
 		
-		userField = new JTextField(15);
-		userField.setEditable(true);
-		userField.setText("");
-		userField.addActionListener(this);
+		backButton = new JButton("Back");
+		backButton.addActionListener(this);
+		
+		interactLabel = new JLabel("NPC: ");
 		
 		interactField = new JTextField(15);
 		interactField.setEditable(false);
@@ -40,35 +40,33 @@ public class Display_Text extends JFrame implements ActionListener{
 		layoutConst.gridx = 0;
 		layoutConst.gridy = 0;	
 		layoutConst.insets = new Insets(10, 10, 10, 10);
-		add(userLabel, layoutConst);
+		add(interactLabel, layoutConst);
 		
 		layoutConst = new GridBagConstraints();
 		layoutConst.gridx = 1;
 		layoutConst.gridy = 0;
 		layoutConst.insets = new Insets(10, 10, 10, 10);
-		add(userField, layoutConst);
+		add(interactField, layoutConst);
 		
 		layoutConst = new GridBagConstraints();
 		layoutConst.gridx = 0;
 		layoutConst.gridy = 1;
 		layoutConst.insets = new Insets(10, 10, 10, 10);
-		add(interactLabel, layoutConst);
+		add(backButton, layoutConst);
 		
 		layoutConst = new GridBagConstraints();
 		layoutConst.gridx = 1;
 		layoutConst.gridy = 1;
 		layoutConst.insets = new Insets(10, 10, 10, 10);
-		add(interactField, layoutConst);
-		
+		add(continueButton, layoutConst);
 		
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		String userInput;
-		userInput = userField.getText();
-		
-		interactField.setText("Success");
+		if (event.getSource() == continueButton)
+			interactField.setText("Continue button");
+        else if (event.getSource() == backButton)
+            interactField.setText("Back button");
 	}
 
 	public static void main(String[] args) {

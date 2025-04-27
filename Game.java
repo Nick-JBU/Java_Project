@@ -40,6 +40,12 @@ public class Game {
 		System.out.println("Enter your character's name");
 		Character user = new Character();
 		//System.out.println(user.name);*/
+		Game_Login loginFrame = new Game_Login();
+		loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		loginFrame.setSize(500, 300);
+		//myFrame.pack();
+		loginFrame.setVisible(true);
+		
 		Scanner scan = new Scanner(System.in);
 		boolean running = true;
 		System.out.println("Enter character name: ");

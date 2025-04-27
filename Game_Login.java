@@ -1,0 +1,125 @@
+package final_project_package;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Game_Login extends JFrame implements ActionListener {
+	public JLabel userLabel;
+	public JLabel passwordLabel;
+	public JTextField userField;
+	public JTextField passwordField;
+	
+	Game_Login(){
+		GridBagConstraints layoutConst = null;
+		setTitle("Login");
+		
+		userLabel = new JLabel("Username: ");
+		passwordLabel = new JLabel("Password: ");
+		
+		userField = new JTextField(15);
+		userField.setEditable(true);
+		userField.setText("");
+		userField.addActionListener(this);
+		
+		passwordField = new JTextField(15);
+		passwordField.setEditable(true);
+		passwordField.setText("");
+		passwordField.addActionListener(this);
+		
+		userField.setPreferredSize(new java.awt.Dimension(450, 20));  // Set width to 250, height to 40
+		passwordField.setPreferredSize(new java.awt.Dimension(450, 20));  
+		
+		setLayout(new GridBagLayout());
+		layoutConst = new GridBagConstraints();
+		
+		layoutConst.gridx = 0;
+		layoutConst.gridy = 0;	
+		layoutConst.insets = new Insets(10, 10, 10, 10);
+		add(userLabel, layoutConst);
+		
+		layoutConst = new GridBagConstraints();
+		layoutConst.gridx = 1;
+		layoutConst.gridy = 0;
+		layoutConst.insets = new Insets(10, 10, 10, 10);
+        layoutConst.weightx = 1.0;  // Allow the text field to expand horizontally
+        layoutConst.fill = GridBagConstraints.HORIZONTAL;  // Ensure it expands horizontally
+		add(userField, layoutConst);
+		
+		layoutConst = new GridBagConstraints();
+		layoutConst.gridx = 0;
+		layoutConst.gridy = 1;
+		layoutConst.insets = new Insets(10, 10, 10, 10);
+		add(passwordLabel, layoutConst);
+		
+		layoutConst = new GridBagConstraints();
+		layoutConst.gridx = 1;
+		layoutConst.gridy = 1;
+		layoutConst.insets = new Insets(10, 10, 10, 10);
+        layoutConst.weightx = 1.0;  // Allow the text field to expand horizontally
+        layoutConst.fill = GridBagConstraints.HORIZONTAL;  // Ensure it expands horizontally
+		add(passwordField, layoutConst);
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		String userInput;
+		String userPassword;
+		userInput = userField.getText();
+		userPassword = passwordField.getText();
+		
+		String url = "jdbc:mysql://localhost:3306/project_db";
+		String username = "root";
+		String password = "";
+		try {
+			Connection connection = DriverManager.getConnection(url, username, password);
+			String name_check = "SELECT COUNT(*) FROM users WHERE name = ? AND password = ?";
+		    PreparedStatement preparedStatement = connection.prepareStatement(name_check);
+		    preparedStatement.setString(1, userInput);
+		    preparedStatement.setString(2, userPassword);
+		    ResultSet resultSet = preparedStatement.executeQuery();
+		    if(resultSet.next()){
+		        int count = resultSet.getInt(1);
+		        if(count > 0){
+		            //Set variables/data to corresponding database data
+		        	passwordField.setText("Login successful. Please close this window");
+		        	userField.setText("Login successful. Please close this window");
+		        } else {
+		            //Element does not exist. Create a new row in database with default values and set = to user data
+		        	passwordField.setText("Login unsuccessful. Creating new user...");
+		        	userField.setText("Login unsuccessful. Creating new user...");
+		        }
+		    }
+		    resultSet.close();
+		    preparedStatement.close();
+		    connection.close();
+
+		    
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void main(String[] args) {
+		Game_Login myFrame = new Game_Login();
+		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		myFrame.setSize(500, 300);
+		//myFrame.pack();
+		myFrame.setVisible(true);
+
+	}
+}
