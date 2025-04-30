@@ -1,8 +1,0 @@
-[
-  {
-    "map": "doorTest.png",
-    "collisionMap": "doorTestCollision.png",
-    "door": {"x": 8, "y": 20},
-    "spawn": {"row": 5, "col": 3}
-  }
-]
