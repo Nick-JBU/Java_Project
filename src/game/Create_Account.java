@@ -24,9 +24,11 @@ import java.sql.SQLException;
 public class Create_Account extends JDialog implements ActionListener {
 	public JLabel userLabel;
 	public JLabel passwordLabel;
+	public JLabel genderLabel;
 	public JLabel char_nameLabel;
 	public JTextField userField;
 	public JTextField passwordField;
+	public JTextField genderField;
 	public JTextField char_nameField;
 	public boolean accountPass = false;
 	public String userInput = "";
@@ -41,6 +43,7 @@ public class Create_Account extends JDialog implements ActionListener {
 		
 		userLabel = new JLabel("Username: ");
 		passwordLabel = new JLabel("Password: ");
+		genderLabel = new JLabel("Gender (male or female): ");
 		char_nameLabel = new JLabel("Enter your character's name");
 		
 		
@@ -54,6 +57,11 @@ public class Create_Account extends JDialog implements ActionListener {
 		passwordField.setEditable(true);
 		passwordField.setText("");
 		passwordField.addActionListener(this);
+		
+		genderField = new JTextField(15);
+		genderField.setEditable(true);
+		genderField.setText("");
+		genderField.addActionListener(this);
 		
 		char_nameField = new JTextField(15);
 		char_nameField.setEditable(true);
@@ -90,24 +98,39 @@ public class Create_Account extends JDialog implements ActionListener {
 		layoutConst.gridx = 0;
 		layoutConst.gridy = 2;
 		layoutConst.insets = new Insets(10, 10, 10, 10);
-		add(char_nameLabel, layoutConst);
+		add(genderLabel, layoutConst);
 		
 		layoutConst = new GridBagConstraints();
 		layoutConst.gridx = 1;
 		layoutConst.gridy = 2;
 		layoutConst.insets = new Insets(10, 10, 10, 10);
+		add(genderField, layoutConst);
+		
+		layoutConst = new GridBagConstraints();
+		layoutConst.gridx = 0;
+		layoutConst.gridy = 3;
+		layoutConst.insets = new Insets(10, 10, 10, 10);
+		add(char_nameLabel, layoutConst);
+		
+		layoutConst = new GridBagConstraints();
+		layoutConst.gridx = 1;
+		layoutConst.gridy = 3;
+		layoutConst.insets = new Insets(10, 10, 10, 10);
 		add(char_nameField, layoutConst);
 		
 		userField.setColumns(30);
 		passwordField.setColumns(30);
+		genderField.setColumns(30);
 		char_nameField.setColumns(30);
 		
 		Font font = new Font("SansSerif", Font.PLAIN, 18); // You can change size (18) and font family
 
 		userLabel.setFont(font);
 		passwordLabel.setFont(font);
+		genderLabel.setFont(font);
 		userField.setFont(font);
 		passwordField.setFont(font);
+		genderField.setFont(font);
 		char_nameLabel.setFont(font);
 		char_nameField.setFont(font);
 		
@@ -117,8 +140,10 @@ public class Create_Account extends JDialog implements ActionListener {
 		String userInput;
 		String userPassword;
 		String charName;
+		String gender;
 		userInput = userField.getText();
 		userPassword = passwordField.getText();
+		gender = genderField.getText();
 		charName = char_nameField.getText();
 		
 		String url = "jdbc:mysql://localhost:3306/project_db";
@@ -131,7 +156,7 @@ public class Create_Account extends JDialog implements ActionListener {
 		    preparedStatement.setString(1, userInput);
 		    preparedStatement.setString(2, userPassword);
 		    preparedStatement.setString(3, charName);
-		    preparedStatement.setString(4, "male");
+		    preparedStatement.setString(4, gender);
 		    preparedStatement.setString(5, null);
 		    preparedStatement.setString(6, null);
 		    preparedStatement.setString(7, null);

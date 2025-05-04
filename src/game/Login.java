@@ -87,7 +87,6 @@ public class Login extends JDialog implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		String userInput;
 		String userPassword;
 		userInput = userField.getText();
 		userPassword = passwordField.getText();

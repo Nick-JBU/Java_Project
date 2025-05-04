@@ -47,6 +47,9 @@ class GamePanel extends JPanel implements KeyListener {
     private DebugPanel debugPanel = new DebugPanel();
     private String loopStatus = "Idle";
     private String playerAction = "None";
+    
+    private boolean xPressedHandled = false; // Declare this in your class
+    private boolean zPressedHandled = false; // Declare this in your class
 
 
     private enum Direction { DOWN, UP, LEFT, RIGHT }
@@ -120,7 +123,12 @@ class GamePanel extends JPanel implements KeyListener {
         loadBuildings();
 
         try {
-            spriteSheet = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/MaleSprites.png"));
+        	if (GameWindow.getGender().equals("male")) {
+        		spriteSheet = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/MaleSprites.png"));
+        	}
+        	if (GameWindow.getGender().equals("female")) {
+        		spriteSheet = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/FemaleSprites.png"));
+        	}
             npcSpriteSheet = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/NPCsprites.png"));
         } catch (IOException | NullPointerException e) {
             spriteLoaded = false;
@@ -442,6 +450,23 @@ class GamePanel extends JPanel implements KeyListener {
             playerAction = "Moving Right";
             return Direction.RIGHT;
         }
+        if (pressedKeys.contains(KeyEvent.VK_X) && !xPressedHandled) {
+        	System.out.println("Working");
+        	Display_Items items_frame = new Display_Items();
+    		items_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    		items_frame.pack();
+    		items_frame.setVisible(true);
+    		xPressedHandled = true;
+        }
+        if (pressedKeys.contains(KeyEvent.VK_Z) && !zPressedHandled) {
+        	//System.out.println("added item");
+        	//GameWindow.item_1 = "cup";
+        	Shop shopFrame = new Shop();
+        	shopFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    		shopFrame.pack();
+    		shopFrame.setVisible(true);
+        	zPressedHandled = true;
+        }
         playerAction = "Idle";
         return null;
     }
@@ -493,7 +518,16 @@ class GamePanel extends JPanel implements KeyListener {
     public void keyReleased(KeyEvent e) {
         pressedKeys.remove(e.getKeyCode());
         if (e.getKeyCode() == KeyEvent.VK_SHIFT) shiftHeld = false;
+        int keyCode = e.getKeyCode();
+        pressedKeys.remove(keyCode);
+        if (keyCode == KeyEvent.VK_X) {
+        	xPressedHandled = false;
+        }
+        if (keyCode == KeyEvent.VK_Z) {
+        	zPressedHandled = false;
+        }
     }
+
 
     @Override
     public void keyTyped(KeyEvent e) {}
