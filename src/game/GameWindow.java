@@ -1,5 +1,7 @@
 package game;
 import javax.swing.*;
+
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -177,6 +179,13 @@ public class GameWindow {
 	        frame.setLocationRelativeTo(null);
 	        frame.setVisible(true);
 	        SwingUtilities.invokeLater(() -> panel.requestFocusInWindow());
+	        
+			NPC1_Dialogue begFrame = new NPC1_Dialogue();
+			begFrame.setLocationRelativeTo(null);  // Center on screen
+			begFrame.setMinimumSize(new Dimension(400, 200)); // Optional
+			begFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			begFrame.pack();
+			begFrame.setVisible(true);
 	        
 
 	    }

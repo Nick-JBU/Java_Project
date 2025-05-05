@@ -36,11 +36,19 @@ public class Shop extends JFrame implements ActionListener{
 	private String [][] tablePrice;
 	private String [][] tableNames;
 	private String [][] tableCount;
+	private JLabel moneyLabel;
+	private JFormattedTextField yourMoneyField;
 	Shop(){
 		GridBagConstraints layoutConst = null;
 		int i;
 		setTitle("Shop");
+		moneyLabel = new JLabel("Your Money: ");
 		priceLabel = new JLabel("Price: ");
+		
+		yourMoneyField = new JFormattedTextField(NumberFormat.getIntegerInstance());
+		yourMoneyField.setColumns(15);
+		yourMoneyField.setEditable(false);
+		yourMoneyField.setValue(0);
 		
 		priceField = new JFormattedTextField(NumberFormat.getIntegerInstance());
 		priceField.setColumns(15);
@@ -162,6 +170,21 @@ public class Shop extends JFrame implements ActionListener{
 		layoutConst.gridx = 2;
 		layoutConst.gridy = 2;
 		add(priceField, layoutConst);
+		
+		layoutConst = new GridBagConstraints();
+		layoutConst.insets = new Insets(10, 10, 10, 1);
+		layoutConst.fill = GridBagConstraints.HORIZONTAL;
+		layoutConst.gridx = 3;
+		layoutConst.gridy = 1;
+		add(moneyLabel, layoutConst);
+		
+		layoutConst = new GridBagConstraints();
+		layoutConst.insets = new Insets(10, 1, 10, 10);
+		layoutConst.fill = GridBagConstraints.HORIZONTAL;
+		layoutConst.gridx = 3;
+		layoutConst.gridy = 2;
+		add(yourMoneyField, layoutConst);
+		yourMoneyField.setValue(GameWindow.money);
 	}
 	@Override
 	public void actionPerformed(ActionEvent event) {
@@ -543,6 +566,7 @@ public class Shop extends JFrame implements ActionListener{
 
                 }
     		}
+    		yourMoneyField.setValue(GameWindow.money);
         }
 	}
 	public static void main(String [] args) {

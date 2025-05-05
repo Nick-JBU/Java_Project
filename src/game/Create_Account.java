@@ -44,7 +44,7 @@ public class Create_Account extends JDialog implements ActionListener {
 		userLabel = new JLabel("Username: ");
 		passwordLabel = new JLabel("Password: ");
 		genderLabel = new JLabel("Gender (male or female): ");
-		char_nameLabel = new JLabel("Enter your character's name");
+		char_nameLabel = new JLabel("Character Name: ");
 		
 		
 		
@@ -164,7 +164,7 @@ public class Create_Account extends JDialog implements ActionListener {
 		    preparedStatement.setString(9, null);
 		    preparedStatement.setString(10, null);
 		    preparedStatement.setInt(11, 0);
-		    preparedStatement.setInt(12, 0);
+		    preparedStatement.setInt(12, 50);
 		    int rowsInserted = preparedStatement.executeUpdate();
 		    accountPass = true;
 		    dispose();

@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
 
-public class Display_Text extends JFrame implements ActionListener{
+public class Mayor_Dialogue extends JFrame implements ActionListener{
 	public JLabel interactLabel;
 	//public JTextField interactField;
 	public JTextArea interactArea;
@@ -25,9 +25,9 @@ public class Display_Text extends JFrame implements ActionListener{
 	private JButton backButton;
 	int page_count = 0;
 	
-	Display_Text(){
+	Mayor_Dialogue(){
 		GridBagConstraints layoutConst = null;
-		setTitle("Intro");
+		setTitle("Converstation");
 		
 		continueButton = new JButton("Continue");
 		continueButton.addActionListener(this);
@@ -35,7 +35,7 @@ public class Display_Text extends JFrame implements ActionListener{
 		backButton = new JButton("Back");
 		backButton.addActionListener(this);
 		
-		interactLabel = new JLabel("Inner Monoglogue: ");
+		interactLabel = new JLabel("Mayor: ");
 		
 		interactArea = new JTextArea(3, 30);
 		interactArea.setLineWrap(true);
@@ -77,18 +77,22 @@ public class Display_Text extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (page_count == 0) {
-			interactArea.setText("You wake up confused and disoriented. You can't seem to remember who you are. After getting your bearings, you check inside your pockets and find a note...");
+			interactArea.setText("Hello there " + GameWindow.char_name + ". My assistant Peter told me of your arrival.");
 		}
 		else if (page_count == 1) {
-			interactArea.setText("The note says 'when you wake up, you'll have memory loss. But, I've left clues around this town to remind you of who you are.'");
+			interactArea.setText("My name is Bryan, the mayor of Elsewhere. I'd like to give you a nice welcoming gift.");
 		}
 		else if (page_count == 2) {
-			interactArea.setText("The note explains that to move, you use the arrow keys. To interact with something, you press the 'z' key. To sprint, you press the 'shift' key.");
+			interactArea.setText("The mayor hands you a small pouch. It looks like it can store about 6 items.");
 		}
 		else if (page_count == 3) {
-			interactArea.setText("The note is signed - " + GameWindow.char_name +". after putting the note back in your pocket, you decide to venture out.");
+			interactArea.setText("This will serve as a storage device while you are here. Press the 'X' key to open it.");
 		}
 		else if (page_count == 4) {
+			interactArea.setText("Oh, and here's 50 coins to help get you started with things. Go out and say hi to our town. I'm sure everyone would love to meet you.");
+			GameWindow.money += 50;
+		}
+		else if (page_count == 5) {
 			interactArea.setText("End of dialogue. Exit the window to continue the game.");
 		}
 		if (event.getSource() == continueButton)
@@ -97,8 +101,8 @@ public class Display_Text extends JFrame implements ActionListener{
         else if (event.getSource() == backButton)
             //interactField.setText("Back button");
         	page_count -= 1;
-		if (page_count > 4) {
-			page_count = 4;
+		if (page_count > 5) {
+			page_count = 5;
 		}
 		if (page_count < 0) {
 			page_count = 0;

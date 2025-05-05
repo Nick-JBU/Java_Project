@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
 
-public class Display_Text extends JFrame implements ActionListener{
+public class Jenna_Dialogue extends JFrame implements ActionListener{
 	public JLabel interactLabel;
 	//public JTextField interactField;
 	public JTextArea interactArea;
@@ -25,9 +25,9 @@ public class Display_Text extends JFrame implements ActionListener{
 	private JButton backButton;
 	int page_count = 0;
 	
-	Display_Text(){
+	Jenna_Dialogue(){
 		GridBagConstraints layoutConst = null;
-		setTitle("Intro");
+		setTitle("Converstation");
 		
 		continueButton = new JButton("Continue");
 		continueButton.addActionListener(this);
@@ -35,7 +35,7 @@ public class Display_Text extends JFrame implements ActionListener{
 		backButton = new JButton("Back");
 		backButton.addActionListener(this);
 		
-		interactLabel = new JLabel("Inner Monoglogue: ");
+		interactLabel = new JLabel("Jenna: ");
 		
 		interactArea = new JTextArea(3, 30);
 		interactArea.setLineWrap(true);
@@ -77,18 +77,15 @@ public class Display_Text extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (page_count == 0) {
-			interactArea.setText("You wake up confused and disoriented. You can't seem to remember who you are. After getting your bearings, you check inside your pockets and find a note...");
+			interactArea.setText("Howdy! I’m Jenna, the owner of Elsewhere’s Medical Building.");
 		}
 		else if (page_count == 1) {
-			interactArea.setText("The note says 'when you wake up, you'll have memory loss. But, I've left clues around this town to remind you of who you are.'");
+			interactArea.setText("Feel free to come here any time you need any healing ointments.");
 		}
 		else if (page_count == 2) {
-			interactArea.setText("The note explains that to move, you use the arrow keys. To interact with something, you press the 'z' key. To sprint, you press the 'shift' key.");
+			interactArea.setText("Could you grab me a couple cups from that stack over there?");
 		}
 		else if (page_count == 3) {
-			interactArea.setText("The note is signed - " + GameWindow.char_name +". after putting the note back in your pocket, you decide to venture out.");
-		}
-		else if (page_count == 4) {
 			interactArea.setText("End of dialogue. Exit the window to continue the game.");
 		}
 		if (event.getSource() == continueButton)
@@ -97,8 +94,8 @@ public class Display_Text extends JFrame implements ActionListener{
         else if (event.getSource() == backButton)
             //interactField.setText("Back button");
         	page_count -= 1;
-		if (page_count > 4) {
-			page_count = 4;
+		if (page_count > 3) {
+			page_count = 3;
 		}
 		if (page_count < 0) {
 			page_count = 0;

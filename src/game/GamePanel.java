@@ -459,13 +459,15 @@ class GamePanel extends JPanel implements KeyListener {
     		xPressedHandled = true;
         }
         if (pressedKeys.contains(KeyEvent.VK_Z) && !zPressedHandled) {
-        	//System.out.println("added item");
-        	//GameWindow.item_1 = "cup";
-        	Shop shopFrame = new Shop();
-        	shopFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    		shopFrame.pack();
-    		shopFrame.setVisible(true);
-        	zPressedHandled = true;
+        	if (playerRow == 24 && playerCol == 23) {
+	        	//System.out.println("added item");
+	        	//GameWindow.item_1 = "cup";
+	        	Shop shopFrame = new Shop();
+	        	shopFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	    		shopFrame.pack();
+	    		shopFrame.setVisible(true);
+	        	zPressedHandled = true;
+        	}
         }
         playerAction = "Idle";
         return null;

@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
 
-public class Display_Text extends JFrame implements ActionListener{
+public class Jenna_Complete extends JFrame implements ActionListener{
 	public JLabel interactLabel;
 	//public JTextField interactField;
 	public JTextArea interactArea;
@@ -25,9 +25,9 @@ public class Display_Text extends JFrame implements ActionListener{
 	private JButton backButton;
 	int page_count = 0;
 	
-	Display_Text(){
+	Jenna_Complete(){
 		GridBagConstraints layoutConst = null;
-		setTitle("Intro");
+		setTitle("Converstation");
 		
 		continueButton = new JButton("Continue");
 		continueButton.addActionListener(this);
@@ -35,7 +35,7 @@ public class Display_Text extends JFrame implements ActionListener{
 		backButton = new JButton("Back");
 		backButton.addActionListener(this);
 		
-		interactLabel = new JLabel("Inner Monoglogue: ");
+		interactLabel = new JLabel("Jenna: ");
 		
 		interactArea = new JTextArea(3, 30);
 		interactArea.setLineWrap(true);
@@ -77,42 +77,53 @@ public class Display_Text extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (page_count == 0) {
-			interactArea.setText("You wake up confused and disoriented. You can't seem to remember who you are. After getting your bearings, you check inside your pockets and find a note...");
+			interactArea.setText("Thanks for getting me those cups. What's that? You need some bandages? Well sure thing...");
 		}
-		else if (page_count == 1) {
-			interactArea.setText("The note says 'when you wake up, you'll have memory loss. But, I've left clues around this town to remind you of who you are.'");
+		else if (page_count == 1 && GameWindow.item_count < 6) {
+			interactArea.setText("You now have bandages in your inventory.");
+			if (GameWindow.item_count == 0) {
+				GameWindow.item_1 = ("Bandages");
+				GameWindow.item_count += 1;
+			}
+			else if (GameWindow.item_count == 1) {
+				GameWindow.item_2 = ("Bandages");
+				GameWindow.item_count += 1;
+			}
+			else if (GameWindow.item_count == 2) {
+				GameWindow.item_3 = ("Bandages");
+				GameWindow.item_count += 1;
+			}
+			else if (GameWindow.item_count == 3) {
+				GameWindow.item_4 = ("Bandages");
+				GameWindow.item_count += 1;
+			}
+			else if (GameWindow.item_count == 4) {
+				GameWindow.item_5 = ("Bandages");
+			}
+			else if (GameWindow.item_count == 5) {
+				GameWindow.item_6 = ("Bandages");
+				GameWindow.item_count += 1;
+			}
+		}
+		else if (page_count == 1 && GameWindow.item_count >= 6) {
+			interactArea.setText("Oops, looks like you don't have room in your inventory");
 		}
 		else if (page_count == 2) {
-			interactArea.setText("The note explains that to move, you use the arrow keys. To interact with something, you press the 'z' key. To sprint, you press the 'shift' key.");
-		}
-		else if (page_count == 3) {
-			interactArea.setText("The note is signed - " + GameWindow.char_name +". after putting the note back in your pocket, you decide to venture out.");
-		}
-		else if (page_count == 4) {
 			interactArea.setText("End of dialogue. Exit the window to continue the game.");
 		}
-		if (event.getSource() == continueButton)
+		if (event.getSource() == continueButton) {
 			//interactField.setText("Continue button");
 			page_count += 1;
-        else if (event.getSource() == backButton)
+		}
+        else if (event.getSource() == backButton) {
             //interactField.setText("Back button");
         	page_count -= 1;
-		if (page_count > 4) {
-			page_count = 4;
+        }
+		if (page_count > 2) {
+			page_count = 2;
 		}
 		if (page_count < 0) {
 			page_count = 0;
 		}
 	}
-
-	public static void main(String[] args) {
-		Display_Text myFrame = new Display_Text();
-		myFrame.setLocationRelativeTo(null);  // Center on screen
-		myFrame.setMinimumSize(new Dimension(400, 200)); // Optional
-		myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		myFrame.pack();
-		myFrame.setVisible(true);
-
-	}
-
 }
