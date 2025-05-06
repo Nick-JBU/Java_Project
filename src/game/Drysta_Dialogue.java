@@ -77,10 +77,20 @@ public class Drysta_Dialogue extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (page_count == 0) {
-			interactArea.setText("Welcome welcome! This here is the sheriff’s office. Don’t make me need to bring you here.");
+			interactArea.setText("Howdy hey, man. Welcome to the Inn. We’ve got plenty of beds, so stop by any time you need a rest.");
 		}
 		else if (page_count == 1) {
-			interactArea.setText("I’m a bit busy at the moment, so I’ll have to go now. See-ya later, friend.");
+			interactArea.setText("Could you hand me a blanket from the store, actually? I’m doing some cleaning");
+		}
+		else if (page_count == 2) {
+			if ("blanket".equals(GameWindow.item_1) || "blanket".equals(GameWindow.item_2) ||"blanket".equals(GameWindow.item_3) ||"blanket".equals(GameWindow.item_4) ||
+					"blanket".equals(GameWindow.item_5) ||"blanket".equals(GameWindow.item_6)){
+						interactArea.setText("Hey, thanks for grabbing it! Here's 50 coins as compensation!");
+						GameWindow.money += 50;
+					}
+			else {
+				interactArea.setText("The blanket should be at the store.");
+			}
 		}
 		else if (page_count == 2) {
 			interactArea.setText("End of dialogue. Exit the window to continue the game.");
@@ -100,7 +110,7 @@ public class Drysta_Dialogue extends JFrame implements ActionListener{
 	}
 
 	public static void main(String[] args) {
-		Display_Text myFrame = new Display_Text();
+		Drysta_Dialogue myFrame = new Drysta_Dialogue();
 		myFrame.setLocationRelativeTo(null);  // Center on screen
 		myFrame.setMinimumSize(new Dimension(400, 200)); // Optional
 		myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

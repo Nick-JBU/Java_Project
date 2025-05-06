@@ -79,21 +79,21 @@ public class Shop extends JFrame implements ActionListener{
 		tablePrice[0][0] = "100";
 		tablePrice[1][0] = "30";
 		tablePrice[2][0] = "25";
-		tablePrice[3][0] = "10";
-		tablePrice[4][0] = "60";
-		tablePrice[5][0] = "40";
-		tablePrice[6][0] = "200";
-		tablePrice[7][0] = "5";
+		tablePrice[3][0] = "500";
+		tablePrice[4][0] = "20";
+		tablePrice[5][0] = "15";
+		tablePrice[6][0] = "10";
+		tablePrice[7][0] = "50";
 		
 		for (i = 0; i<numElements; i++) {
 			tableCount[i][0] = "0";
 		}
 		
-		tableNames[0][0] = "map";
-		tableNames[1][0] = "wood";
-		tableNames[2][0] = "cat";
-		tableNames[3][0] = "rock";
-		tableNames[4][0] = "shield";
+		tableNames[0][0] = "cat";
+		tableNames[1][0] = "blanket";
+		tableNames[2][0] = "bird feeder";
+		tableNames[3][0] = "map";
+		tableNames[4][0] = "bandages";
 		tableNames[5][0] = "water";
 		tableNames[6][0] = "paper";
 		tableNames[7][0] = "coat";
@@ -258,7 +258,7 @@ public class Shop extends JFrame implements ActionListener{
 		if (event.getSource() == updatePriceButton) {
 			priceField.setValue(totalPrice);
 		}		
-        else if (event.getSource() == purchaseButton && GameWindow.money > totalPrice && GameWindow.item_count <= 6) {
+        else if (event.getSource() == purchaseButton && GameWindow.money >= totalPrice && GameWindow.item_count <= 6) {
     		if (item1CountInt > 1 || item2CountInt > 1 || item3CountInt > 1 || item4CountInt > 1 || item5CountInt > 1 || item6CountInt > 1 || item7CountInt > 1 || item8CountInt > 1) {
     			priceField.setText("Can only purchase 1 item at a time");
     		}
@@ -283,31 +283,31 @@ public class Shop extends JFrame implements ActionListener{
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 10) {
+                	else if (totalPrice == 500) {
                 		GameWindow.item_1 = tableNames[3][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 60) {
+                	else if (totalPrice == 20) {
                 		GameWindow.item_1 = tableNames[4][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 40) {
+                	else if (totalPrice == 15) {
                 		GameWindow.item_1 = tableNames[5][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 200) {
+                	else if (totalPrice == 10) {
                 		GameWindow.item_1 = tableNames[6][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 5) {
+                	else if (totalPrice == 50) {
                 		GameWindow.item_1 = tableNames[7][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
@@ -333,31 +333,31 @@ public class Shop extends JFrame implements ActionListener{
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 10) {
+                	else if (totalPrice == 500) {
                 		GameWindow.item_2 = tableNames[3][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 60) {
+                	else if (totalPrice == 20) {
                 		GameWindow.item_2 = tableNames[4][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 40) {
+                	else if (totalPrice == 15) {
                 		GameWindow.item_2 = tableNames[5][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 200) {
+                	else if (totalPrice == 10) {
                 		GameWindow.item_2 = tableNames[6][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 5) {
+                	else if (totalPrice == 50) {
                 		GameWindow.item_2 = tableNames[7][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
@@ -383,31 +383,31 @@ public class Shop extends JFrame implements ActionListener{
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 10) {
+                	else if (totalPrice == 500) {
                 		GameWindow.item_3 = tableNames[3][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 60) {
+                	else if (totalPrice == 20) {
                 		GameWindow.item_3 = tableNames[4][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 40) {
+                	else if (totalPrice == 15) {
                 		GameWindow.item_3 = tableNames[5][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 200) {
+                	else if (totalPrice == 10) {
                 		GameWindow.item_3 = tableNames[6][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 5) {
+                	else if (totalPrice == 50) {
                 		GameWindow.item_3 = tableNames[7][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
@@ -433,31 +433,31 @@ public class Shop extends JFrame implements ActionListener{
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 10) {
+                	else if (totalPrice == 500) {
                 		GameWindow.item_4 = tableNames[3][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 60) {
+                	else if (totalPrice == 20) {
                 		GameWindow.item_4 = tableNames[4][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 40) {
+                	else if (totalPrice == 15) {
                 		GameWindow.item_4 = tableNames[5][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 200) {
+                	else if (totalPrice == 10) {
                 		GameWindow.item_4 = tableNames[6][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 5) {
+                	else if (totalPrice == 50) {
                 		GameWindow.item_4 = tableNames[7][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
@@ -483,31 +483,31 @@ public class Shop extends JFrame implements ActionListener{
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 10) {
+                	else if (totalPrice == 500) {
                 		GameWindow.item_5 = tableNames[3][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 60) {
+                	else if (totalPrice == 20) {
                 		GameWindow.item_5 = tableNames[4][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 40) {
+                	else if (totalPrice == 15) {
                 		GameWindow.item_5 = tableNames[5][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 200) {
+                	else if (totalPrice == 10) {
                 		GameWindow.item_5 = tableNames[6][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 5) {
+                	else if (totalPrice == 50) {
                 		GameWindow.item_5 = tableNames[7][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
@@ -533,32 +533,32 @@ public class Shop extends JFrame implements ActionListener{
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 10) {
+                	else if (totalPrice == 500) {
                 		GameWindow.item_6 = tableNames[3][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 60) {
+                	else if (totalPrice == 20) {
                 		GameWindow.item_6 = tableNames[4][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 40) {
+                	else if (totalPrice == 15) {
                 		GameWindow.item_6 = tableNames[5][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 200) {
+                	else if (totalPrice == 10) {
                 		GameWindow.item_6 = tableNames[6][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;
                 	}
-                	else if (totalPrice == 5) {
-                		GameWindow.item_2 = tableNames[7][0];
+                	else if (totalPrice == 50) {
+                		GameWindow.item_6 = tableNames[7][0];
                 		GameWindow.item_count += 1;
                 		GameWindow.money -= totalPrice;
                 		return;

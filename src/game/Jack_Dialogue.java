@@ -77,7 +77,7 @@ public class Jack_Dialogue extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (page_count == 0) {
-			interactArea.setText("Hello there! I’m Jack, the owner of Elsewhere’s shopping center. Stop by any time for any reason. We’ve got you covered. Just talk to the clerk at the desk.");
+			interactArea.setText("Hello there! I’m Jack, the owner of Elsewhere’s shopping center which is in this building to our right. Stop by any time for any reason. We’ve got you covered. Just talk to the clerk at the desk.");
 		}
 		else if (page_count == 1) {
 			interactArea.setText("Oh hey, if it would be alright, could you get me a few bandages from the Medical Building?");
@@ -100,7 +100,7 @@ public class Jack_Dialogue extends JFrame implements ActionListener{
 	}
 
 	public static void main(String[] args) {
-		Display_Text myFrame = new Display_Text();
+		Jack_Dialogue myFrame = new Jack_Dialogue();
 		myFrame.setLocationRelativeTo(null);  // Center on screen
 		myFrame.setMinimumSize(new Dimension(400, 200)); // Optional
 		myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

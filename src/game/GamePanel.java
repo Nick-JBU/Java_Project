@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 
@@ -181,10 +183,10 @@ class GamePanel extends JPanel implements KeyListener {
 
     private void loadBuildings() {
         try {
-            currentMapPath = "/resources/maps/default/default.png";
-            mapImage = ImageIO.read(getClass().getResourceAsStream(currentMapPath));
-            overlayImage = ImageIO.read(getClass().getResourceAsStream("/resources/maps/default/defaultOverlay.png"));
-            collisionMap = ImageIO.read(getClass().getResourceAsStream("/resources/maps/default/defaultCollision.png"));
+            currentMapPath = "/resources/maps/building_2/building_2.png";
+            mapImage = ImageIO.read(getClass().getResourceAsStream("/resources/maps/building_2/building_2.png"));
+            overlayImage = ImageIO.read(getClass().getResourceAsStream("/resources/maps/building_2/building_2Overlay.png"));
+            collisionMap = ImageIO.read(getClass().getResourceAsStream("/resources/maps/building_2/building_2Collision.png"));
             mapWidth = mapImage.getWidth();
             mapHeight = mapImage.getHeight();
         } catch (IOException e) {
@@ -196,27 +198,44 @@ class GamePanel extends JPanel implements KeyListener {
         int tilesWide = mapWidth / tileSize;
         int tilesHigh = mapHeight / tileSize;
 
-        if (tilesWide == 48 && tilesHigh == 27) {
+        if (currentMapPath.equals("/resources/maps/building_2/building_2.png")) {
+            playerCol = 1;
+            playerRow = 1;
+        } else if (tilesWide == 48 && tilesHigh == 27){
             playerCol = 23;
             playerRow = 12;
-        } else {
-            playerCol = 4;
-            playerRow = 4;
+        }else {
+        	playerCol = 4;
+        	playerRow = 4;
         }
     }
 
     private final List<NPC> defaultMapNPCs = List.of(
 	    new NPC(25, 23, Direction.UP),
-	    new NPC(6, 29, Direction.UP)
+	    new NPC(6, 29, Direction.UP),
+	    new NPC(9, 20, Direction.DOWN)
 	);
 
 	private final List<NPC> building1NPCs = List.of(
 	    new NPC(3, 0, Direction.RIGHT)
 	);
+	private final List<NPC> building2NPCs = List.of(
+		new NPC(0, 1, Direction.DOWN)	
+	);
+			
 
 	private final List<NPC> building1_2NPCs = List.of(
 	    new NPC(4, 3, Direction.UP)
 	);
+	private final List<NPC> building6NPCs = List.of(
+		new NPC(0, 1, Direction.DOWN)
+	);
+	private final List<NPC> building3NPCs = List.of(
+			new NPC(1, 4, Direction.DOWN)
+		);
+	private final List<NPC> building4NPCs = List.of(
+			new NPC(1, 2, Direction.LEFT)
+		);
 
 	private void setupNPCs() {
 	    npcs.clear();
@@ -226,6 +245,18 @@ class GamePanel extends JPanel implements KeyListener {
 	        npcs.addAll(building1NPCs);
 	    } else if (currentMapPath.equals("/resources/maps/building_1_2/building_1_2.png")) {
 	        npcs.addAll(building1_2NPCs);
+	    }
+	    else if (currentMapPath.equals("/resources/maps/building_2/building_2.png")) {
+	    	npcs.addAll(building2NPCs);
+	    }
+	    else if (currentMapPath.equals("/resources/maps/building_6/building_6.png")) {
+	    	npcs.addAll(building6NPCs);
+	    }
+	    else if (currentMapPath.equals("/resources/maps/building_3/building_3.png")) {
+	    	npcs.addAll(building3NPCs);
+	    }
+	    else if (currentMapPath.equals("/resources/maps/building_4/building_4.png")) {
+	    	npcs.addAll(building4NPCs);
 	    }
 	}
 
@@ -459,7 +490,34 @@ class GamePanel extends JPanel implements KeyListener {
     		xPressedHandled = true;
         }
         if (pressedKeys.contains(KeyEvent.VK_Z) && !zPressedHandled) {
-        	if (playerRow == 24 && playerCol == 23) {
+        	if (playerRow == 24 && playerCol == 23 && currentMapPath.equals("/resources/maps/default/default.png")) {
+        		Jack_Dialogue jackFrame = new Jack_Dialogue();
+        		jackFrame.setLocationRelativeTo(null);  // Center on screen
+        		jackFrame.setMinimumSize(new Dimension(400, 200)); // Optional
+        		jackFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        		jackFrame.pack();
+        		jackFrame.setVisible(true);
+        		zPressedHandled = true;
+        	}
+        	else if (playerRow == 10 && playerCol == 20 && currentMapPath.equals("/resources/maps/default/default.png")) {
+        		NPC2_Dialogue npc2frame = new NPC2_Dialogue();
+        		npc2frame.setLocationRelativeTo(null);  // Center on screen
+        		npc2frame.setMinimumSize(new Dimension(400, 200)); // Optional
+        		npc2frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        		npc2frame.pack();
+        		npc2frame.setVisible(true);
+        		zPressedHandled = true;
+        	}
+        	else if (playerRow == 3 && playerCol == 1 && currentMapPath.equals("/resources/maps/building_1/building_1.png")) {
+        		Mayor_Dialogue mayorFrame = new Mayor_Dialogue();
+        		mayorFrame.setLocationRelativeTo(null);  // Center on screen
+        		mayorFrame.setMinimumSize(new Dimension(400, 200)); // Optional
+        		mayorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        		mayorFrame.pack();
+        		mayorFrame.setVisible(true);
+        		zPressedHandled = true;
+        	}
+        	else if (playerRow == 1 && playerCol == 1 && currentMapPath.equals("/resources/maps/building_6/building_6.png")) {
 	        	//System.out.println("added item");
 	        	//GameWindow.item_1 = "cup";
 	        	Shop shopFrame = new Shop();
@@ -468,6 +526,35 @@ class GamePanel extends JPanel implements KeyListener {
 	    		shopFrame.setVisible(true);
 	        	zPressedHandled = true;
         	}
+        	else if (playerRow == 5 && playerCol == 29 && currentMapPath.equals("/resources/maps/default/default.png")) {
+        		Finch_Dialogue finchFrame = new Finch_Dialogue();
+        		finchFrame.setLocationRelativeTo(null);  // Center on screen
+        		finchFrame.setMinimumSize(new Dimension(400, 200)); // Optional
+        		finchFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        		finchFrame.pack();
+        		finchFrame.setVisible(true);
+        		zPressedHandled = true;
+        	}
+        	else if (playerRow == 2 && playerCol == 4 && currentMapPath.equals("/resources/maps/building_3/building_3.png")) {
+        		Jenna_Dialogue jennaFrame = new Jenna_Dialogue();
+        		jennaFrame.setLocationRelativeTo(null);  // Center on screen
+        		jennaFrame.setMinimumSize(new Dimension(400, 200)); // Optional
+        		jennaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        		jennaFrame.pack();
+        		jennaFrame.setVisible(true);
+        		zPressedHandled = true;
+        	}
+        	else if (playerRow == 1 && playerCol == 1 && currentMapPath.equals("/resources/maps/building_4/building_4.png")) {
+        		Drysta_Dialogue drystaFrame = new Drysta_Dialogue();
+        		drystaFrame.setLocationRelativeTo(null);  // Center on screen
+        		drystaFrame.setMinimumSize(new Dimension(400, 200)); // Optional
+        		drystaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        		drystaFrame.pack();
+        		drystaFrame.setVisible(true);
+        		zPressedHandled = true;
+        	}
+        
+        
         }
         playerAction = "Idle";
         return null;

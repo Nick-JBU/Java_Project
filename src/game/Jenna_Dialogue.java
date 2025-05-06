@@ -83,7 +83,17 @@ public class Jenna_Dialogue extends JFrame implements ActionListener{
 			interactArea.setText("Feel free to come here any time you need any healing ointments.");
 		}
 		else if (page_count == 2) {
-			interactArea.setText("Could you grab me a couple cups from that stack over there?");
+			interactArea.setText("Could you grab me a couple bandages?");
+		}
+		else if (page_count == 3) {
+			if ("bandages".equals(GameWindow.item_1) || "bandages".equals(GameWindow.item_2) ||"bandages".equals(GameWindow.item_3) ||"bandages".equals(GameWindow.item_4) ||
+					"bandages".equals(GameWindow.item_5) ||"bandages".equals(GameWindow.item_6)){
+						interactArea.setText("Thanks for getting those! Here's 35 coins as a thank you!");
+						GameWindow.money += 35;
+					}
+			else {
+				interactArea.setText("The bandages should be at the store.");
+			}
 		}
 		else if (page_count == 3) {
 			interactArea.setText("End of dialogue. Exit the window to continue the game.");
@@ -103,7 +113,7 @@ public class Jenna_Dialogue extends JFrame implements ActionListener{
 	}
 
 	public static void main(String[] args) {
-		Display_Text myFrame = new Display_Text();
+		Jenna_Dialogue myFrame = new Jenna_Dialogue();
 		myFrame.setLocationRelativeTo(null);  // Center on screen
 		myFrame.setMinimumSize(new Dimension(400, 200)); // Optional
 		myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

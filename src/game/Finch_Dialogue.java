@@ -79,8 +79,16 @@ public class Finch_Dialogue extends JFrame implements ActionListener{
 		if (page_count == 0) {
 			interactArea.setText("Hey stranger!! Could you grab me that bird feeder? I dropped it trying to hang it up right here.");
 		}
+
 		else if (page_count == 1) {
-			interactArea.setText("I’m a bit busy at the moment, so I’ll have to go now. See-ya later, friend.");
+			if ("bird feeder".equals(GameWindow.item_1) || "bird feeder".equals(GameWindow.item_2) ||"bird feeder".equals(GameWindow.item_3) ||"bird feeder".equals(GameWindow.item_4) ||
+					"bird feeder".equals(GameWindow.item_5) ||"bird feeder".equals(GameWindow.item_6)){
+						interactArea.setText("Hey, thanks for finding it! Here's 40 coins as a thank you!");
+						GameWindow.money += 40;
+					}
+			else {
+				interactArea.setText("The bird feeder, it's right over there.");
+			}
 		}
 		else if (page_count == 2) {
 			interactArea.setText("End of dialogue. Exit the window to continue the game.");
@@ -100,7 +108,7 @@ public class Finch_Dialogue extends JFrame implements ActionListener{
 	}
 
 	public static void main(String[] args) {
-		Display_Text myFrame = new Display_Text();
+		Finch_Dialogue myFrame = new Finch_Dialogue();
 		myFrame.setLocationRelativeTo(null);  // Center on screen
 		myFrame.setMinimumSize(new Dimension(400, 200)); // Optional
 		myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -97,7 +97,7 @@ public class NPC2_Dialogue extends JFrame implements ActionListener{
 	}
 
 	public static void main(String[] args) {
-		Display_Text myFrame = new Display_Text();
+		NPC2_Dialogue myFrame = new NPC2_Dialogue();
 		myFrame.setLocationRelativeTo(null);  // Center on screen
 		myFrame.setMinimumSize(new Dimension(400, 200)); // Optional
 		myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
